@@ -1,0 +1,108 @@
+<!-- Richie Cardiel     Assignment 6.2      6/22/25 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 6.2</title>
+
+    <!-- font and style options -->
+     <style>
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: blueviolet;
+            color: darkkhaki;
+            text-align: center;
+            padding: 30px;
+        }
+        input, button {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 16px;
+            color: coral;
+        }
+     </style>
+</head>
+<body>
+    <!-- header -->
+    <h1>
+        Check This Out!
+    </h1>
+    
+    <!-- Form for user to enter string -->
+    <form onsubmit="handleSubmit(); return false;">
+        <!-- input field for text -->
+        <label for="userText">Enter a word to see if it's a panindrome and how many vowels:</label><br>
+        <input type="text" id="userText" required><br>
+        <!-- Bubmit button -->
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- output container for messages -->
+     <div id="output"></div>
+
+     <!-- image -->
+      <img src="IMG_2671.JPG" alt="queen" width="250" style="margin-top: 20px; border-radius: 15px;">
+
+      <!-- Javascript section -->
+       <script>
+        // class to process user input
+        class TextProcessor {
+            constructor(text) {
+                this.text = text;
+            }
+
+            // check if text is a palindrome
+            isPalindrome() {
+                const clean = this.text.toLowerCase().replace(/[^a-z0-9]/g, "");
+                const reversed = clean.split("").reverse().join("");
+                return clean === reversed;
+            }
+
+            // count vowels in string
+            countVowels() {
+                const vowels = "aeiou";
+                let count = 0;
+                for (let char of this.text.toLowerCase()) {
+                    if (vowels.includes(char)) {
+                        count++;
+                    }
+                }
+                return count;
+            }
+
+            // return summary message
+            getSummary() {
+                const palindromeMsg = this.isPalindrome()
+                    ? "Yes, this is a palindrome!"
+                    : "No, this is not a palindrome.";
+                const vowelCount = this.countVowels();
+                return `${palindromeMsg}<br>Vowel Count: ${vowelCount}`;
+            }
+        }
+
+        // handle form submission
+        function handleSubmit() {
+            // get value from input field
+            const inputText = document.getElementById('userText').value;
+
+            // validate input length
+            if (inputText.length < 3) {
+                document.getElementById('output').innerHTML = "Please enter at least 3 characters";
+                return;
+            }
+
+            // Create object from class
+            const processor = new TextProcessor(inputText);
+
+            // diplay result int HTML output div
+             document.getElementById('output').innerHTML =  processor.getSummary();
+        }
+       </script>
+</body>
+</html>
