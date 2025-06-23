@@ -1,0 +1,74 @@
+<!-- 
+    Name: Richie Cardiel    Assignment 6.1  6/22/25
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadata and page title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 6.1</title>
+
+    <!-- Internal CSS styles -->
+    <style>
+        /* font and text style*/
+        body {
+            font-family:fantasy;
+            background-color: #000000; 
+            color: #15ff00; /* White text for contrast */
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Style the image with spacing and round corners */
+        img {
+            width: 300px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        /* Style the play button */
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #ff1e1e;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Add hover effect to button */
+        button:hover {
+            background-color: #9d9d9d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main header of the webpage -->
+    <h1>"Aglio E Oglio" by Nerds in Denial</h1>
+    <p>This is and unlreleased song from my bands upcoming album</p>
+
+    <!-- Album cover -->
+    <img src="IMG_1318.JPG" alt=".bars cover">
+
+    <!--button that triggers the sound when clicked -->
+    <button onclick="playSound()">Play to Listen!</button>
+
+    <!-- HTML audio element referencing a local MP3 file -->
+    <audio id="aglio">
+        <source src="Aglio E Olio MIX-03.wav" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- JavaScript section that defines how the sound will be played -->
+    <script>
+        // Function to play the audio file
+        function playSound() {
+            document.getElementById('aglio').play(); // Play the sound when button is clicked
+        }
+    </script>
+</body>
+</html>
